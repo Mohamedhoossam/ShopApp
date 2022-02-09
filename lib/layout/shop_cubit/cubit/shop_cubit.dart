@@ -126,13 +126,14 @@ class ShopCubit extends Cubit<ShopStates>{
   
 
   late CategoriesModel categoriesModel;
-  void getCategoriesData(){
+  void getCategoriesData()async{
+    emit(ShopCategoryLoadingStates());
     DioHelper.getData(url: 'categories',token:token).then((value) {
       categoriesModel=CategoriesModel.fromJson(value.data!);
-      emit(ShopFavoritesSuccessStates());
+      emit(ShopCategorySuccessStates());
     }).catchError((error){
       print(error.toString());
-      emit(ShopFavoritesErrorStates());
+      emit(ShopCategoryErrorStates());
     });
 
 

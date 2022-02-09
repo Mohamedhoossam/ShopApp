@@ -118,7 +118,7 @@ class ShopLayout extends StatelessWidget {
         return Scaffold(
            drawer: drawer1,
            appBar: AppBar(
-             title: const Text('hossamShop',style: TextStyle(fontStyle:FontStyle.italic,fontFamily: 'Jannah' ),),
+             title: const Text('ShOp',style: TextStyle(fontStyle:FontStyle.italic,fontFamily: 'Jannah' ),),
              actions: [
               Stack(alignment: AlignmentDirectional.topStart,
                 children: [
@@ -132,6 +132,7 @@ class ShopLayout extends StatelessWidget {
            ),
            backgroundColor: Colors.white,
             body:
+
            OfflineBuilder(
               connectivityBuilder: (
                   BuildContext context,
@@ -145,15 +146,22 @@ class ShopLayout extends StatelessWidget {
 
                   return Padding(
 
+
                     padding: const EdgeInsets.only(top: 2.0),
-                    child: cubit.screen[cubit.currentIndex],
+                    child: //cubit.screen[cubit.currentIndex],
+
+                    IndexedStack(
+                      index: cubit.currentIndex,
+                      children: cubit.screen,
+
+                    ),
                   );
                 }
                 else{
                   return SafeArea(child: buildNoInternetWidget(context));
                 }
               },
-              child:   const ShopLayout()
+              child:const ShopLayout()
           ),
            bottomNavigationBar: BottomNavigationBar(
 

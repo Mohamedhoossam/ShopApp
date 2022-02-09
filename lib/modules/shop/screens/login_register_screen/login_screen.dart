@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myshop/componentes/componentes.dart';
 import 'package:myshop/modules/shop/screens/login_register_screen/login_register_cubit/cubit.dart';
 import 'package:myshop/modules/shop/screens/login_register_screen/login_register_cubit/states.dart';
+import 'package:myshop/modules/shop/screens/login_register_screen/register_screen.dart';
 import 'package:myshop/shared/constant/constant.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -161,7 +162,9 @@ class LoginScreen extends StatelessWidget {
                                 const Text('I Don\'t Have Account',style: TextStyle(fontSize: 14,color: Colors.grey),),
                                 const Spacer(),
                                 TextButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    navigateTo(context, RegisterScreen());
+                                  },
                                   child:  const Text('Register now !',style: TextStyle(fontSize: 14,color: Colors.blue),),
                                 ),
                               ],
