@@ -14,6 +14,7 @@ import 'layout/shop_cubit/cubit/shop_cubit.dart';
 import 'layout/shop_cubit/states/shop_states.dart';
 import 'layout/shop_layout.dart';
 import 'modules/shop/screens/login_register_screen/login_screen.dart';
+import 'modules/shop/screens/login_register_screen/register_screen.dart';
 import 'modules/shop/screens/onboarding.dart';
 import 'network/local/local.dart';
 import 'shared/constant/constant.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return BlocProvider(
-      create: (BuildContext context)=>ShopCubit()..getData()..getFavoriteData()..getCategoriesData()..getNotificationData(),
+      create: (BuildContext context)=>ShopCubit()..getData()..getFavoriteData()..getNotificationData()..getCategoriesData(),
       child: BlocConsumer<ShopCubit,ShopStates>(
         listener: (context,state){},
         builder: (context,state){
@@ -74,8 +75,7 @@ class MyApp extends StatelessWidget {
                 ),
             ),
             debugShowCheckedModeBanner: false,
-            home:widget,
-
+            home: widget,
 
           );
         },

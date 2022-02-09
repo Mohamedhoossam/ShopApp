@@ -21,5 +21,9 @@ class NotificationErrorState extends ShopStates {}
 class ShopLogoutLoadingState extends ShopStates {}
 class ShopLogoutSuccessState extends ShopStates {}
 class ShopLogoutErrorState extends ShopStates {}
+class ShopCategorySuccessStates extends ShopStates{}
+class ShopCategoryErrorStates extends ShopStates{}
+class ShopCategoryLoadingStates extends ShopStates{}
+
 
 

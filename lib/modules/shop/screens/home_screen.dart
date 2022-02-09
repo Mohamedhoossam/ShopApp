@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myshop/componentes/componentes.dart';
 import 'package:myshop/layout/shop_cubit/cubit/shop_cubit.dart';
 import 'package:myshop/layout/shop_cubit/states/shop_states.dart';
+import 'package:myshop/model/category_data_model.dart';
 import 'package:myshop/model/home_data_model.dart';
 import 'package:myshop/modules/shop/screens/searchs/search.dart';
 import 'package:myshop/modules/shop/screens/view_screen.dart';
@@ -129,6 +131,7 @@ class HomeScreen extends StatelessWidget {
               fontSize: 12.0
             ),
           ),
+
         ),
         const SizedBox(height: 10.0,),
 
@@ -163,6 +166,32 @@ class HomeScreen extends StatelessWidget {
         ),
 
         //GridView
+         Padding(
+           padding: const EdgeInsets.all(16.0),
+           child: Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children:  [
+               const Text('Category',style: TextStyle(color: Colors.black,fontSize: 20,fontFamily: 'Jannah'),),
+
+               SizedBox(
+                 width: double.infinity,
+                 height: 120,
+                 child: ListView.separated(
+                     itemBuilder: (context,index)=>buildCategoryItem(ShopCubit.get(context).categoriesModel.data!.data[index]),
+                   separatorBuilder: (BuildContext context, int index)=>const SizedBox(width: 10.0,),
+                   itemCount: ShopCubit.get(context).categoriesModel.data!.data.length,
+                   shrinkWrap: true,
+                   scrollDirection: Axis.horizontal,
+
+
+                 ),
+               )
+             ],
+           ),
+         ),
+
+
+        const Text('News Products',style: TextStyle(fontSize: 20.0,fontFamily: 'Jannah'),),
         Container(
          color: Colors.white,
           child: GridView.count(
@@ -297,4 +326,34 @@ class HomeScreen extends StatelessWidget {
       ),
     ),
   );
+
+
+
+  Widget buildCategoryItem(DataModel model)=> Stack(
+    alignment: AlignmentDirectional.bottomCenter,
+    children: [
+       CachedNetworkImage(
+        imageUrl: model.image,
+         width: 120.0,
+         height: 100.0,
+         fit: BoxFit.cover,
+         imageBuilder: (context,imageProvider)=>Image(image: imageProvider),
+      ),
+
+
+      Container(
+        color: Colors.black.withOpacity(.8),
+        width: 120.0,
+        child: Text(model.name,style: const TextStyle(
+            color: Colors.white)
+          ,maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+        ),
+      )
+
+
+
+    ],);
+
 }
